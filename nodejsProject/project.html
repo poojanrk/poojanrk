@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beauty Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .content {
+            margin: 20px;
+        }
+    </style>
+    <script>
+    	function showPage(pageId) {
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+    document.getElementById(pageId).style.display = 'block';
+    // Store the current page in localStorage
+    localStorage.setItem('currentPage', pageId);
+}
+
+ 
+    </script>
+</head>
+
+<body onload="showPage(localStorage.getItem('currentPage') || 'home')">
+
+    <div class="header">
+        <h1>Welcome to our Beauty Products Website!</h1>
+    </div>
+
+    <div class="nav">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About Us</a>
+        <a href="#" onclick="showPage('contact')">Contact Us</a>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="content">
+        <h2>Home</h2>
+        <p>Here you can find a variety of beauty products.</p>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="content" style="display: none;">
+        <h2>About Us</h2>
+        <p>We are a company that specializes in beauty products.</p>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="content" style="display: none;">
+        <h2>Contact Us</h2>
+        <form action="/submit_form" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>© 2023 Beauty Products</p>
+    </div>
+</body>
+</html>
+
+
