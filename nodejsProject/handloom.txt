@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handloom Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+        nav {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            min-height: 400px;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var aboutLink = document.getElementById('about-link');
+            var contactLink = document.getElementById('contact-link');
+            var aboutSection = document.getElementById('about');
+            var contactSection = document.getElementById('contact');
+
+            aboutLink.onclick = function() {
+                aboutSection.style.display = 'block';
+                contactSection.style.display = 'none';
+            };
+
+            contactLink.onclick = function() {
+                contactSection.style.display = 'block';
+                aboutSection.style.display = 'none';
+            };
+
+            document.getElementById('enquiryForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var enquiry = document.getElementById('enquiry').value;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://your-server.com/submit-enquiry', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    name: name,
+                    email: email,
+                    enquiry: enquiry
+                }));
+            });
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Handloom Website</h1>
+    </header>
+    <nav>
+        <a href="#" id="about-link">About Us</a> |
+        <a href="#" id="contact-link">Contact Us</a>
+    </nav>
+    <main>
+        <section id="about" class="hidden">
+            <h2>About Us</h2>
+            <p>Information about the company...</p>
+        </section>
+        <section id="contact" class="hidden">
+            <h2>Contact Us</h2>
+            <form id="enquiryForm">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" name="email"><br>
+                <label for="enquiry">Enquiry:</label><br>
+                <textarea id="enquiry" name="enquiry"></textarea><br>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2023 Handloom Website</p>
+    </footer>
+</body>
+</html>
